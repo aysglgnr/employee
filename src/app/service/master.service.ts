@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApiResponse } from '../model/interface/master';
 import { Employee } from '../model/class/Employee';
@@ -10,7 +10,7 @@ import { Employee } from '../model/class/Employee';
 export class MasterService {
 
   apiUrl: string = 'https://projectapi.gerasim.in/api/EmployeeManagement/'
-  constructor(private http: HttpClient) { }
+  http = inject(HttpClient)
 
   getAllDept(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(this.apiUrl + "GetParentDepartment")
